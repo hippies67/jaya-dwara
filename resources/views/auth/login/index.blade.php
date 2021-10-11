@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>TAHUNGODING | Login</title>
+  <title>Jaya Dwara | Login</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -77,7 +77,7 @@
               Don't have an account? <a href="auth-register.html">Create One</a>
             </div> --}}
             <div class="simple-footer">
-              Copyright &copy; TAHUNGODING 2021
+              Copyright &copy; JAYA DWARA 2021
             </div>
           </div>
         </div>

@@ -85,8 +85,8 @@
                       <th>Nama Lengkap</th>
                       <th>Photo</th>
                       <th>Jabatan</th>
-                      <th>Divisi</th>
-                      <th>Sub Divisi</th>
+                      {{-- <th>Divisi</th>
+                      <th>Sub Divisi</th> --}}
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -105,7 +105,7 @@
                         @endif
                       </td>
                       <td>{{ $teams->position }}</td>
-                      <td>
+                      {{-- <td>
                         @if (isset($teams->divisions->name))
                         {{ $teams->divisions->name }}
                         @endif
@@ -114,7 +114,7 @@
                         @if (isset($teams->sub_divisions->name))
                         {{ $teams->sub_divisions->name }}
                         @endif
-                      </td>
+                      </td> --}}
                       <td>
                         <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
                           data-target="#editTeam{{$teams->id}}" onclick="validateEditTeam({{$teams}})"><i
@@ -158,7 +158,7 @@
             <label for="position">Jabatan</label>
             <input type="text" class="form-control" name="team_position" placeholder="Jabatan">
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="division">Divisi</label>
             <select class="form-control" name="team_division_id">
               @if (count($division))
@@ -170,8 +170,8 @@
               <option value="">Divisi Tidak Tersedia</option>
               @endif
             </select>
-          </div>
-          <div class="form-group">
+          </div> --}}
+          {{-- <div class="form-group">
             <label for="sub_division">Sub Divisi</label>
             <select class="form-control" name="team_sub_division_id">
               @if (count($sub_division))
@@ -183,7 +183,7 @@
               <option value="">Sub Divisi Tidak Tersedia</option>
               @endif
             </select>
-          </div>
+          </div> --}}
           <div class="form-group">
             <label for="team_photo">Foto</label>
             <input type="file" class="form-control dropify" name="team_photo" data-allowed-file-extensions="png jpg jpeg"
@@ -226,7 +226,7 @@
             <input type="text" class="form-control" name="edit_team_position" id="edit_team_position"
               placeholder="Deskripsi" value="{{ $teams->position }}">
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="edit_team_division">Divisi</label>
             <select class="form-control" name="edit_team_division_id">
               @if (count($division))
@@ -238,8 +238,8 @@
               <option value="">Divisi Tidak Tersedia</option>
               @endif
             </select>
-          </div>
-          <div class="form-group">
+          </div> --}}
+          {{-- <div class="form-group">
             <label for="edit_team_sub_division">Sub Divisi</label>
             <select class="form-control" name="edit_team_sub_division_id">
               @if (count($sub_division))
@@ -251,7 +251,7 @@
               <option value="">Sub Divisi Tidak Tersedia</option>
               @endif
             </select>
-          </div>
+          </div> --}}
           <div class="form-group">
             <label for="edit_photo">Foto</label>
             <input type="file" class="form-control dropify" name="edit_team_photo"

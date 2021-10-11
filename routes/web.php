@@ -8,8 +8,8 @@ use App\Http\Controllers\Back\ProfileWebController;
 use App\Http\Controllers\Back\ProductController;
 use App\Http\Controllers\Back\ProjectController;
 use App\Http\Controllers\Back\TeamController;
-use App\Http\Controllers\Back\DivisionController;
-use App\Http\Controllers\Back\SubDivisionController;
+// use App\Http\Controllers\Back\DivisionController;
+// use App\Http\Controllers\Back\SubDivisionController;
 use App\Http\Controllers\Back\EventController;
 use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\RoleController;
@@ -58,13 +58,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('teams', TeamController::class);
     Route::post('teams/destroy-all', [TeamController::class, 'destroyAll'])->name('teams.destroyAll');
 
-    Route::resource('divisions', DivisionController::class);
-    Route::post('divisions/destroy-all', [DivisionController::class, 'destroyAll'])->name('divisions.destroyAll');
-    Route::post('divisions/check-division-name', [DivisionController::class, 'checkDivisionName'])->name('checkDivisionName');
+    // Route::resource('divisions', DivisionController::class);
+    // Route::post('divisions/destroy-all', [DivisionController::class, 'destroyAll'])->name('divisions.destroyAll');
+    // Route::post('divisions/check-division-name', [DivisionController::class, 'checkDivisionName'])->name('checkDivisionName');
 
-    Route::resource('sub-divisions', SubDivisionController::class);
-    Route::post('sub-divisions/destroy-all', [SubDivisionController::class, 'destroyAll'])->name('sub-divisions.destroyAll');
-    Route::post('sub-divisions/check-sub-division-name', [SubDivisionController::class, 'checkSubDivisionName'])->name('checkSubDivisionName');
+    // Route::resource('sub-divisions', SubDivisionController::class);
+    // Route::post('sub-divisions/destroy-all', [SubDivisionController::class, 'destroyAll'])->name('sub-divisions.destroyAll');
+    // Route::post('sub-divisions/check-sub-division-name', [SubDivisionController::class, 'checkSubDivisionName'])->name('checkSubDivisionName');
 
     Route::resource('events', EventController::class);
     Route::post('events/destroy-all', [EventController::class, 'destroyAll'])->name('events.destroyAll');

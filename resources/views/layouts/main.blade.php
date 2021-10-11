@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Tahungoding | @yield('title')</title>
+  <title>Jaya Dwara | @yield('title')</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -42,7 +42,11 @@
         </form>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            @if(!empty(Auth::user()->photo) && Storage::exists(Auth::user()->photo))
             <img alt="image" src="{{ Storage::url(Auth::user()->photo)}}" class="rounded-circle mr-1">
+            @else
+            <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            @endif
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->username }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
@@ -60,27 +64,27 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">TAHUNGODING</a>
+            <a href="{{ route('dashboard.index')}}">JAYA DWARA</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">TH</a>
+            <a href="{{ route('dashboard.index')}}">JD</a>
           </div>
           <ul class="sidebar-menu">
               <li class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('dashboard.index') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
               <li class="{{ request()->routeIs('profile-web.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('profile-web.index') }}"><i class="fas fa-id-card"></i> <span>Profile Web</span></a></li>
               <li class="{{ request()->routeIs('products.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('products.index') }}"><i class="fas fa-box"></i> <span>Product</span></a></li>
               <li class="{{ request()->routeIs('projects.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('projects.index') }}"><i class="fas fa-tools"></i> <span>Project</span></a></li>
-              <li class="{{ request()->routeIs('divisions.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('divisions.index') }}"><i class="fas fa-th-large"></i> <span>Division</span></a></li>
+              {{-- <li class="{{ request()->routeIs('divisions.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('divisions.index') }}"><i class="fas fa-th-large"></i> <span>Division</span></a></li> --}}
               <li class="{{ request()->routeIs('teams.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('teams.index') }}"><i class="fas fa-users"></i> <span>Team</span></a></li>
               <li class="{{ request()->routeIs('events.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('events.index') }}"><i class="fas fa-calendar-week"></i> <span>Event</span></a></li>
               <li class="{{ request()->routeIs('banners.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('banners.index') }}"><i class="fas fa-image"></i> <span>Banner</span></a></li>
-              <li class="nav-item dropdown">
+              {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users-cog"></i><span>Hak Akses</span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ request()->routeIs('roles.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('roles.index') }}">Role</a></li>
                   <li class="{{ request()->routeIs('permissions.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('permissions.index') }}">Permission</a></li>
                 </ul>
-              </li>
+              </li> --}}
             </ul>
         </aside>
       </div>
@@ -92,7 +96,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2021 <div class="bullet"></div> <a href="https://tahungoding.com/">TAHUNGODING</a>
+          Copyright &copy; 2021 <div class="bullet"></div> <a href="#">JAYA DWARA</a>
         </div>
       </footer>
     </div>
