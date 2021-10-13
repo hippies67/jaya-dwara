@@ -19,14 +19,41 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+@if(count($web))
+  @foreach ($web as $webs)
+      @php 
+          $primary_color = $webs->primary_color 
+      @endphp
+  @endforeach
+@else
+  @php 
+      $primary_color = "#6777ef";
+  @endphp
+@endif
+  <style>
+    a {
+        color: {{$primary_color}};
+    }
+    .section .section-title::before {
+        background-color: {{$primary_color}};
+    }
 
+    .card .card-header h4 {
+        color: {{$primary_color}};
+    }
+
+    #searchResult {
+      display: none;
+    }
+  </style>
   @yield('css')
 </head>
 
 <body>
+
   <div id="app">
     <div class="main-wrapper">
-      <div class="navbar-bg"></div>
+      <div class="navbar-bg" style="background-color: @if(isset($primary_color)) {{$primary_color}} @else #6777ef @endif"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
@@ -34,10 +61,56 @@
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
           </ul>
           <div class="search-element">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
+            <input class="form-control" id="mySearch" type="search" placeholder="Search" aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
-           
+            <div class="search-result" id="searchResult">
+              <div class="search-header">
+                Result
+              </div>
+              <div class="search-item">
+                <a href="{{ route('dashboard.index') }}" style="color: #78828a;">
+                  <i class="fas fa-fire mr-1" style="width: 30px"></i>
+                  Dashboard
+                </a>
+              </div>
+              <div class="search-item">
+                <a href="{{ route('profile-web.index') }}" style="color: #78828a;">
+                  <i class="fas fa-id-card mr-1" style="width: 30px"></i>
+                  Profile Web
+                </a>
+              </div>
+              <div class="search-item">
+                <a href="{{ route('products.index') }}" style="color: #78828a;">
+                  <i class="fas fa-box mr-1" style="width: 30px"></i>
+                  Product
+                </a>
+              </div>
+              <div class="search-item">
+                <a href="{{ route('projects.index') }}" style="color: #78828a;">
+                  <i class="fas fa-tools mr-1" style="width: 30px"></i>
+                  Project
+                </a>
+              </div>
+              <div class="search-item">
+                <a href="{{ route('teams.index') }}" style="color: #78828a;">
+                  <i class="fas fa-users mr-1" style="width: 30px"></i>
+                  Team
+                </a>
+              </div>
+              <div class="search-item">
+                <a href="{{ route('events.index') }}" style="color: #78828a;">
+                  <i class="fas fa-calendar-week mr-1" style="width: 30px"></i>
+                  Event
+                </a>
+              </div>
+              <div class="search-item">
+                <a href="{{ route('banners.index') }}" style="color: #78828a;">
+                  <i class="fas fa-image mr-1" style="width: 30px"></i>
+                  Banner
+                </a>
+              </div>
+            </div>
           </div>
         </form>
         <ul class="navbar-nav navbar-right">
@@ -49,7 +122,7 @@
             @endif
             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->username }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
+              <div class="dropdown-title">Logged in {{ \Carbon\Carbon::parse(Auth::user()->last_login_at)->diffForHumans() }}</div>
               <a href="{{ route('profile') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
@@ -70,14 +143,14 @@
             <a href="{{ route('dashboard.index')}}">JD</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('dashboard.index') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-              <li class="{{ request()->routeIs('profile-web.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('profile-web.index') }}"><i class="fas fa-id-card"></i> <span>Profile Web</span></a></li>
-              <li class="{{ request()->routeIs('products.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('products.index') }}"><i class="fas fa-box"></i> <span>Product</span></a></li>
-              <li class="{{ request()->routeIs('projects.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('projects.index') }}"><i class="fas fa-tools"></i> <span>Project</span></a></li>
+              <li class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('dashboard.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('dashboard.index') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+              <li class="{{ request()->routeIs('profile-web.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('profile-web.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('profile-web.index') }}"><i class="fas fa-id-card"></i> <span>Profile Web</span></a></li>
+              <li class="{{ request()->routeIs('products.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('products.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('products.index') }}"><i class="fas fa-box"></i> <span>Product</span></a></li>
+              <li class="{{ request()->routeIs('projects.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('projects.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('projects.index') }}"><i class="fas fa-tools"></i> <span>Project</span></a></li>
               {{-- <li class="{{ request()->routeIs('divisions.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('divisions.index') }}"><i class="fas fa-th-large"></i> <span>Division</span></a></li> --}}
-              <li class="{{ request()->routeIs('teams.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('teams.index') }}"><i class="fas fa-users"></i> <span>Team</span></a></li>
-              <li class="{{ request()->routeIs('events.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('events.index') }}"><i class="fas fa-calendar-week"></i> <span>Event</span></a></li>
-              <li class="{{ request()->routeIs('banners.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('banners.index') }}"><i class="fas fa-image"></i> <span>Banner</span></a></li>
+              <li class="{{ request()->routeIs('teams.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('teams.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('teams.index') }}"><i class="fas fa-users"></i> <span>Team</span></a></li>
+              <li class="{{ request()->routeIs('events.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('events.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('events.index') }}"><i class="fas fa-calendar-week"></i> <span>Event</span></a></li>
+              <li class="{{ request()->routeIs('banners.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('banners.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('banners.index') }}"><i class="fas fa-image"></i> <span>Banner</span></a></li>
               {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users-cog"></i><span>Hak Akses</span></a>
                 <ul class="dropdown-menu">
@@ -96,7 +169,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2021 <div class="bullet"></div> <a href="#">JAYA DWARA</a>
+          Copyright &copy; 2021 <div class="bullet"></div> <a href="{{ route('dashboard.index') }}" @if(isset($primary_color)) style="color: {{$primary_color}}" @else style="color: #6777ef;" @endif>JAYA DWARA</a>
         </div>
       </footer>
     </div>
@@ -116,7 +189,22 @@
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
+<script>
 
+$(document).ready(function () { 
+  $("#mySearch").on("keyup", function () {
+        if (this.value.length > 0) {   
+          $("#searchResult").css("display", "block");
+        $(".search-item").hide().filter(function () {
+          return $(this).text().toLowerCase().indexOf($("#mySearch").val().toLowerCase()) != -1;
+        }).show(); 
+        }  
+      else { 
+        $("#searchResult").css("display", "none");
+      }
+  });  
+});
+</script>
   @yield('js')
 </body>
 </html>

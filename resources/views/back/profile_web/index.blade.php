@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main', ['web' => $web])
 @section('title', 'Tahungoding')
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -53,7 +53,6 @@
       <div class="breadcrumb-item">Profile Web</div>
     </div>
   </div>
-
   <div class="section-body">
     <div class="row">
       <div class="col-xl">
@@ -456,6 +455,7 @@
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+
 <script>
   $('#color-picker').spectrum({
   type: "component"

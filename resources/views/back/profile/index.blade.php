@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main', ['web' => $web])
 @section('title', 'Profile')
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -39,6 +39,8 @@
     #buttonGroup {
         display: block;
     }
+
+    
 </style>
 @endsection
 @section('container')
@@ -51,7 +53,7 @@
         </div>
     </div>
     <div class="section-body">
-        <h2 class="section-title">Hi, {{ Auth::user()->username }}!</h2>
+        <h2 class="section-title" >Hi, {{ Auth::user()->username }}!</h2>
         <p class="section-lead">
             Ubah informasi tentang diri Anda di halaman ini.
         </p>
@@ -59,35 +61,40 @@
         <div class="row mt-sm-4">
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
-                    <form method="post" action="{{ route('profile.update', Auth::user()->id) }}" id="profileEditForm" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('profile.update', Auth::user()->id) }}" id="profileEditForm"
+                        enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" id="checkProfileUsername" value="{{ Auth::user()->username }}">
                         <input type="hidden" id="checkProfileEmail" value="{{ Auth::user()->email }}">
                         <div class="card-header">
-                            <h4>Edit Profile</h4>
+                            <h4 >Edit Profile</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6 col-12">
                                     <label>Nama Lengkap</label>
-                                    <input type="text" class="form-control" name="fullname" value="{{ Auth::user()->fullname }}">
+                                    <input type="text" class="form-control" name="fullname"
+                                        value="{{ Auth::user()->fullname }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Username</label>
-                                    <input type="text" class="form-control" name="username" value="{{ Auth::user()->username }}">
+                                    <input type="text" class="form-control" name="username"
+                                        value="{{ Auth::user()->username }}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6 col-12">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}">
+                                    <input type="email" class="form-control" name="email"
+                                        value="{{ Auth::user()->email }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Password</label>
                                     <div class="input-group" id="showOrHide">
                                         <input type="password" class="form-control" name="password">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                                            <button class="btn btn-outline-secondary" type="button"><i
+                                                    class="fa fa-eye-slash" aria-hidden="true"></i></button>
                                         </div>
                                     </div>
                                     <div id="errorPassword"></div>
@@ -95,7 +102,8 @@
 
                                 <div class="form-group col-md-6 col-12">
                                     <label>Nomor Telepon</label>
-                                    <input type="tel" class="form-control" name="phone" value="{{ Auth::user()->phone }}">
+                                    <input type="tel" class="form-control" name="phone"
+                                        value="{{ Auth::user()->phone }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Jenis Kelamin</label>
@@ -107,25 +115,30 @@
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Tempat Lahir</label>
-                                    <input type="text" class="form-control" name="place_of_birth" value="{{ Auth::user()->place_of_birth }}">
+                                    <input type="text" class="form-control" name="place_of_birth"
+                                        value="{{ Auth::user()->place_of_birth }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Tanggal Lahir</label>
-                                    <input type="date" class="form-control" name="date_of_birth" value="{{ Auth::user()->date_of_birth }}">
+                                    <input type="date" class="form-control" name="date_of_birth"
+                                        value="{{ Auth::user()->date_of_birth }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Alamat</label>
-                                    <textarea name="address" class="form-control" style="height: 100%;">{{ Auth::user()->address }}</textarea>
+                                    <textarea name="address" class="form-control"
+                                        style="height: 100%;">{{ Auth::user()->address }}</textarea>
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label>Foto</label>
                                     <input type="file" class="form-control dropify" name="photo"
-                                        data-allowed-file-extensions="png jpg jpeg" data-show-remove="false" data-default-file="@if(!empty(Auth::user()->photo) &&
+                                        data-allowed-file-extensions="png jpg jpeg" data-show-remove="false"
+                                        data-default-file="@if(!empty(Auth::user()->photo) &&
                                         Storage::exists(Auth::user()->photo)){{ Storage::url(Auth::user()->photo) }}@endif">
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button type="submit" class="btn btn-primary" id="editProfileButton">Simpan Perubahan</button>
+                                <button type="submit" class="btn btn-primary" id="editProfileButton">Simpan
+                                    Perubahan</button>
                             </div>
                     </form>
                 </div>

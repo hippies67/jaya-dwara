@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main', ['web' => $web])
 @section('title', 'Project')
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -45,6 +45,7 @@
     }
   }
 </style>
+
 @endsection
 @section('container')
 <section class="section">
@@ -66,8 +67,8 @@
                   class="fas fa-plus-circle"></i></button>
               @if (count($project))
               <div class="d-flex justify-content-between">
-                <input type="search" class="form-control desktop-search" id="projectSearch" placeholder="Cari Project..." autocomplete="off"
-                  style="margin-right: 20px;">
+                <input type="search" class="form-control desktop-search" id="projectSearch"
+                  placeholder="Cari Project..." autocomplete="off" style="margin-right: 20px;">
                 <input type="checkbox" id="checkAll" autocomplete="off" style="margin-right: 20px; display:none;">
                 <button class="btn btn-sm btn-danger" id="deleteAllButton" data-toggle="modal"
                   data-target="#deleteAllConfirm" style="margin-right: 20px; display:none;"><i
@@ -89,7 +90,8 @@
         @if (count($project))
         <div class="card mobile-search-card" style="display: none">
           <div class="card-header">
-            <input type="search" class="form-control mobile-search" id="mobileProjectSearch" placeholder="Cari Project..." autocomplete="off">
+            <input type="search" class="form-control mobile-search" id="mobileProjectSearch"
+              placeholder="Cari Project..." autocomplete="off">
           </div>
         </div>
         @endif
@@ -99,9 +101,9 @@
 
     </div>
     <div id="projectData">
-      @include('back.project.pagination');
+      @include('back.project.pagination')
     </div>
-    
+
   </div>
 </section>
 <div class="modal fade" tabindex="-1" role="dialog" id="tambahProject">

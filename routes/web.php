@@ -28,9 +28,10 @@ use App\Http\Controllers\Back\PermissionController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => ['guest']], function () {
 
 Route::resource('login', LoginController::class);
-
+});
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 

@@ -63,7 +63,6 @@
   outline: none; }
 
 a {
-  color: #6777ef;
   font-weight: 500;
   transition: all .5s;
   -webkit-transition: all .5s;
@@ -1317,7 +1316,8 @@ h6 .badge {
 .btn-primary, .btn-primary.disabled {
   box-shadow: 0 2px 6px #acb5f6;
   background-color: #6777ef;
-  border-color: #6777ef; }
+  border-color: #6777ef; 
+}
   .btn-primary:focus, .btn-primary.disabled:focus {
     background-color: #394eea !important; }
     .btn-primary:focus:active, .btn-primary.disabled:focus:active {
@@ -1537,7 +1537,6 @@ h6 .badge {
   left: 0;
   width: 100%;
   height: 115px;
-  background-color: #6777ef;
   z-index: -1; }
 
 .navbar {
@@ -2814,7 +2813,6 @@ body.layout-3 .main-footer {
       .main-sidebar .sidebar-menu li a:hover {
         background-color: #f8fafb; }
     .main-sidebar .sidebar-menu li.active a {
-      color: #6777ef;
       font-weight: 600;
       background-color: #f8fafb; }
       .main-sidebar .sidebar-menu li.active a.has-dropdown:after {

@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Web;
 use Storage;
 use Alert;
 use Hash;
+use Auth;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -29,7 +32,8 @@ class LoginController extends Controller
 
     public function profile()
     {
-        return view('back.profile.index');
+        $data['web'] = Web::all();
+        return view('back.profile.index', $data);
     }
 
     public function checkProfileUsername(Request $request) 
@@ -109,6 +113,10 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt(array('username' => $input['username'], 'password' => $input['password']), $remember)) {
+            $userId = User::findOrFail(Auth::id());
+            $userId->update([
+                'last_login_at' => date('Y-m-d H:i:s')  
+            ]);
             return redirect()->route('dashboard.index');
         } else {
             Alert::error('Error', 'Username atau Password salah!');

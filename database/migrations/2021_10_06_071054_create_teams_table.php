@@ -18,10 +18,6 @@ class CreateTeamsTable extends Migration
             $table->string('fullname', '200');
             $table->string('photo', '200')->nullable();
             $table->string('position', '200');
-            $table->unsignedBigInteger('division_id')->nullable();
-            $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
-            $table->unsignedBigInteger('sub_division_id')->nullable();
-            $table->foreign('sub_division_id')->references('id')->on('sub_divisions')->onDelete('cascade');
             $table->timestamps();
         });
     }

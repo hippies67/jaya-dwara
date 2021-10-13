@@ -28,6 +28,7 @@ class User extends Authenticatable
         'photo',
         'place_of_birth',
         'date_of_birth',
+        'last_login_at'
     ];
 
     /**
