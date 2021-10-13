@@ -42,7 +42,7 @@
         color: {{$primary_color}};
     }
 
-    #searchResult {
+    #searchResultMenu {
       display: none;
     }
   </style>
@@ -64,7 +64,7 @@
             <input class="form-control" id="mySearch" type="search" placeholder="Search" aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
-            <div class="search-result" id="searchResult">
+            <div class="search-result" id="searchResultMenu">
               <div class="search-header">
                 Result
               </div>
@@ -194,13 +194,13 @@
 $(document).ready(function () { 
   $("#mySearch").on("keyup", function () {
         if (this.value.length > 0) {   
-          $("#searchResult").css("display", "block");
+          $("#searchResultMenu").css("display", "block");
         $(".search-item").hide().filter(function () {
           return $(this).text().toLowerCase().indexOf($("#mySearch").val().toLowerCase()) != -1;
         }).show(); 
         }  
       else { 
-        $("#searchResult").css("display", "none");
+        $("#searchResultMenu").css("display", "none");
       }
   });  
 });
