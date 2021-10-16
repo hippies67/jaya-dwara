@@ -141,7 +141,7 @@
 </div>
 
 @foreach ($allAchievement as $achievements)
-<div class="modal fade" tabindex="-1" role="dialog" id="editAchievements{{$achievements->id}}">
+<div class="modal fade" tabindex="-1" role="dialog" id="editAchievement{{$achievements->id}}">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Back\ProfileWebController;
+use App\Http\Controllers\Back\AchievementController;
 use App\Http\Controllers\Back\ProductController;
 use App\Http\Controllers\Back\ProjectController;
 use App\Http\Controllers\Back\TeamController;
@@ -42,6 +43,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
     Route::resource('dashboard', DashboardController::class);
+
+    Route::resource('achievements', AchievementController::class);
+    Route::post('product/destroy-all', [AchievementController::class, 'destroyAll'])->name('achievements.destroyAll');
+    Route::post('achievement/check-achievement-name', [AchievementController::class, 'checkAchievementName'])->name('checkAchievementName');
+    Route::post('achievement/search-achievement', [AchievementController::class, 'achievementSearch'])->name('achievementSearch');
+    Route::post('achievement/pagination', [AchievementController::class, 'achievementPagination'])->name('achievementPagination');
+
     Route::resource('profile-web', ProfileWebController::class);
 
     Route::resource('products', ProductController::class);

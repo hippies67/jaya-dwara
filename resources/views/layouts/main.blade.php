@@ -61,7 +61,7 @@
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
           </ul>
           <div class="search-element">
-            <input class="form-control" id="mySearch" type="search" placeholder="Search" aria-label="Search" data-width="250">
+            <input class="form-control" id="mySearch" type="search" placeholder="Cari Menu..." aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
             <div class="search-result" id="searchResultMenu">
@@ -72,6 +72,12 @@
                 <a href="{{ route('dashboard.index') }}" style="color: #78828a;">
                   <i class="fas fa-fire mr-1" style="width: 30px"></i>
                   Dashboard
+                </a>
+              </div>
+              <div class="search-item">
+                <a href="{{ route('achievements.index') }}" style="color: #78828a;">
+                  <i class="fas fa-trophy mr-1" style="width: 30px"></i>
+                  Achievement
                 </a>
               </div>
               <div class="search-item">
@@ -144,6 +150,7 @@
           </div>
           <ul class="sidebar-menu">
               <li class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('dashboard.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('dashboard.index') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+              <li class="{{ request()->routeIs('achievements.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('achievements.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('achievements.index') }}"><i class="fas fa-trophy"></i> <span>Achievement</span></a></li>
               <li class="{{ request()->routeIs('profile-web.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('profile-web.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('profile-web.index') }}"><i class="fas fa-id-card"></i> <span>Profile Web</span></a></li>
               <li class="{{ request()->routeIs('products.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('products.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('products.index') }}"><i class="fas fa-box"></i> <span>Product</span></a></li>
               <li class="{{ request()->routeIs('projects.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('projects.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('projects.index') }}"><i class="fas fa-tools"></i> <span>Project</span></a></li>

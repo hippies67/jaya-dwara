@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Achievement;
+use App\Models\Product;
+use App\Models\Project;
+use App\Models\Team;
+use App\Models\Event;
 use App\Models\Web;
 
 class DashboardController extends Controller
@@ -16,6 +21,11 @@ class DashboardController extends Controller
     public function index()
     {
         $data['web'] = Web::all();
+        $data['achievement'] = Achievement::count();
+        $data['product'] = Product::count();
+        $data['project'] = Project::count();
+        $data['team'] = Team::count();
+        $data['event'] = Event::count();
         return view('back.dashboard.index', $data);
     }
 
