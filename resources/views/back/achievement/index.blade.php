@@ -1,13 +1,10 @@
 @extends('layouts.main', ['web' => $web])
-@section('title', 'Banner')
+@section('title', 'Achievement')
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
   integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
 <style>
   .dropify-wrapper {
     border: 1px solid #e2e7f1;
@@ -34,118 +31,104 @@
     border: 1px solid #f1556c;
   }
 
-  table.dataTable.no-footer {
-    border-bottom: 1px solid #f4f4f4 !important;
+  #buttonGroup {
+    display: block;
   }
 
-  .table:not(.table-sm) thead th {
-    background-color: rgba(0, 0, 0, 0.75) !important;
-    color: #fff !important;
+  @media screen and (max-width: 455px) {
+    .desktop-search {
+      display: none;
+    }
+
+    .mobile-search-card {
+      display: block !important;
+    }
   }
 </style>
 @endsection
 @section('container')
 <section class="section">
   <div class="section-header">
-    <h1>Banner</h1>
+    <h1>Achievement</h1>
     <div class="section-header-breadcrumb">
       <div class="breadcrumb-item active"><a href="{{ route('dashboard.index') }}">Dashboard</a></div>
-      <div class="breadcrumb-item">Banner</div>
+      <div class="breadcrumb-item">Achievement</div>
     </div>
   </div>
 
   <div class="section-body">
-
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-12 col-md-6 col-lg-12">
         <div class="card">
-          <div class="card-body">
+          <div class="card-header">
             <div class="d-flex justify-content-between w-100">
-              <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambahBanner"><i
+              <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambahAchievement"><i
                   class="fas fa-plus-circle"></i></button>
-              @if (count($banner))
+              @if (count($achievement))
               <div class="d-flex justify-content-between">
+                <input type="search" class="form-control desktop-search" id="achievementSearch" placeholder="Cari Achievement..." autocomplete="off" style="margin-right: 20px;">
+                <input type="checkbox" id="checkAll" autocomplete="off" style="margin-right: 20px; display:none;">
                 <button class="btn btn-sm btn-danger" id="deleteAllButton" data-toggle="modal"
-                  data-target="#deleteAllConfirm" style="margin-right: 20px;"><i class="fas fa-trash"></i></button>
+                  data-target="#deleteAllConfirm" style="margin-right: 20px; display:none;"><i
+                    class="fas fa-trash"></i></button>
+                <button class="btn btn-sm btn-secondary" onclick="setting()"><i class="fas fa-cog"></i></button>
               </div>
               @else
               <div class="d-flex justify-content-between">
-                <button class="btn btn-sm btn-danger" id="deleteAllEmpty" style="margin-right: 20px;" disabled><i
-                    class="fas fa-trash"></i></button>
+                <input type="checkbox" id="checkAllEmpty" autocomplete="off" style="margin-right: 20px; display:none;"
+                  disabled>
+                <button class="btn btn-sm btn-danger" id="deleteAllEmpty" style="margin-right: 20px; display:none;"
+                  disabled><i class="fas fa-trash"></i></button>
+                <button class="btn btn-sm btn-secondary" id="setting"><i class="fas fa-cog"></i></button>
               </div>
               @endif
             </div>
-            <br>
-            <div class="card">
-              <div class="card-body">
-                <table id="bannerTable" class="table table-striped" style="width:100%">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Gambar</th>
-                      <th>Url</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @php
-                    $increment = 1;
-                    @endphp
-                    @foreach ($banner as $banners)
-                    <tr>
-                      <td>{{ $increment++ }}</td>
-                      <td>
-                        @if(!empty($banners->image) && Storage::exists($banners->image))
-                        <img src="{{ Storage::url($banners->image) }}" alt="Photo" width="100" height="80"
-                          style="object-fit: cover" class="rounded">
-                        @endif
-                      </td>
-                      <td>{{ $banners->url }}</td>
-                      <td>
-                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
-                          data-target="#editBanner{{$banners->id}}" onclick="validateEditBanner({{$banners}})"><i
-                            class="far fa-edit"></i></button>
-                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                          data-target="#deleteConfirm" onclick="deleteThisBanner({{$banners}})"><i
-                            class="far fa-trash-alt"></i></button>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
+        @if (count($achievement))
+        <div class="card mobile-search-card" style="display: none">
+          <div class="card-header">
+            <input type="search" class="form-control mobile-search" id="mobileAchievementSearch" placeholder="Cari Achievement..." autocomplete="off">
+          </div>
+        </div>
+        @endif
       </div>
+    </div>
+    <div id="searchResult">
+
+    </div>
+    <div id="achievementData">
+      @include('back.achievement.pagination')
     </div>
   </div>
 </section>
-@endsection
-
-@section('modal')
-<div class="modal fade" tabindex="-1" role="dialog" id="tambahBanner">
+<div class="modal fade" tabindex="-1" role="dialog" id="tambahAchievement">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Tambah Banner</h5>
+        <h5 class="modal-title">Tambah Achievement</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('banners.store') }}" method="post" id="tambahBannerForm" enctype="multipart/form-data">
+      <form action="{{ route('achievements.store') }}" method="post" id="tambahAchievementForm" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
           <div class="form-group">
-            <label for="image">Gambar</label>
-            <input type="file" class="form-control dropify" name="banner_image"
+            <label for="achievement_name">Nama</label>
+            <input type="text" class="form-control" name="achievement_name" placeholder="Nama">
+          </div>
+          <div class="form-group">
+            <label for="achievement_description">Deskripsi</label>
+            <textarea name="achievement_description" id="achievement_description" class="form-control" placeholder="Deskripsi"
+              style="height: 100%;"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="achievement_image">Gambar</label>
+            <input type="file" class="form-control dropify" name="achievement_image"
               data-allowed-file-extensions="png jpg jpeg" data-show-remove="false">
             <div id="errorImage">
             </div>
-          </div>
-          <div class="form-group">
-            <label for="url">Url</label>
-            <input type="text" class="form-control" name="banner_url" placeholder="Url">
           </div>
         </div>
         <div class="modal-footer bg-whitesmoke br">
@@ -157,39 +140,76 @@
   </div>
 </div>
 
-@foreach ($banner as $banners)
-<div class="modal fade" tabindex="-1" role="dialog" id="editBanner{{$banners->id}}">
+@foreach ($allAchievement as $achievements)
+<div class="modal fade" tabindex="-1" role="dialog" id="editAchievements{{$achievements->id}}">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit Banner</h5>
+        <h5 class="modal-title">Edit Achievements</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('banners.update', $banners->id) }}" method="post" id="editBannerForm{{$banners->id}}"
+      <form action="{{ route('achievements.update', $achievements->id) }}" method="post" id="editAchievementForm{{ $achievements->id }}"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <input type="hidden" id="checkAchievementName{{ $achievements->id }}" value="{{ $achievements->name }}">
         <div class="modal-body">
           <div class="form-group">
-            <label for="edit_banner_image">Gambar</label>
-            <input type="file" class="form-control dropify" name="edit_banner_image"
-              data-allowed-file-extensions="png jpg jpeg" data-default-file="@if(!empty($banners->image) &&
-                            Storage::exists($banners->image)){{ Storage::url($banners->image) }}@endif"
-              data-show-remove="false">
+            <label for="edit_achievement_name">Nama</label>
+            <input type="text" class="form-control" name="edit_achievement_name" id="edit_achievement_name" placeholder="Nama"
+              value="{{ $achievements->name }}">
           </div>
           <div class="form-group">
-            <label for="edit_banner_url">Nama Lengkap</label>
-            <input type="text" class="form-control" name="edit_banner_url" id="edit_banner_url" placeholder="Nama"
-              value="{{ $banners->url }}">
+            <label for="edit_achievement_description">Deskripsi</label>
+            <textarea name="edit_achievement_description" id="edit_achievement_description" class="form-control"
+              placeholder="Deskripsi" style="height: 100%;">{{ $achievements->description }}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="edit_achievement_image">Gambar</label>
+            <input type="file" class="form-control dropify" name="edit_achievement_image"
+              data-allowed-file-extensions="png jpg jpeg" data-default-file="@if(!empty($achievements->image) &&
+                            Storage::exists($achievements->image)){{ Storage::url($achievements->image) }}@endif"
+              data-show-remove="false">
           </div>
         </div>
         <div class="modal-footer bg-whitesmoke br">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-          <button type="submit" class="btn btn-primary" id="editButton">Ubah</button>
+          <button type="submit" class="btn btn-primary" id="editAchievementButton">Ubah</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+@endforeach
+
+@foreach ($allAchievement as $achievements)
+<div class="modal fade" tabindex="-1" role="dialog" id="more{{$achievements->id}}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rincian</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{ $achievements->name }}</p>
+
+        @if(!empty($achievements->image) && Storage::exists($achievements->image))
+        <img src="{{ Storage::url($achievements->image) }}" alt="" class="img-fluid rounded mt-1"
+          style="width:100%; height:200px; object-fit:cover;">
+        @endif
+        <br><br>
+        <p>{{ $achievements->description }}</p>
+        @if(isset($achievements->youtube))
+        <input type="text" class="form-control" value="{{ $achievements->youtube }}" readonly>
+        @endif
+      </div>
+      <div class="modal-footer bg-whitesmoke br">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+      </div>
     </div>
   </div>
 </div>
@@ -204,15 +224,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('banners.destroy', '') }}" method="post" id="deleteBannerForm">
+      <form action="{{ route('achievements.destroy', '') }}" method="post" id="deleteAchievementForm">
         @csrf
         @method('delete')
         <div class="modal-body">
-          Apakah anda yakin untuk <b>menghapus</b> banner ini ?
+          Apakah anda yakin untuk <b>menghapus</b> achievement ini ?
         </div>
         <div class="modal-footer bg-whitesmoke br">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-          <button type="button" class="btn btn-primary" id="deleteModalButton">Ya, Hapus</button>
+          <button type="submit" class="btn btn-primary" id="deleteModalButton">Ya, Hapus Semua</button>
         </div>
       </form>
     </div>
@@ -228,41 +248,72 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('banners.destroyAll') }}" method="post" id="destroyAllForm">
-        @csrf
-        <div class="modal-body">
-          Apakah anda yakin untuk <b>menghapus semua</b> banner ?
-        </div>
-        <div class="modal-footer bg-whitesmoke br">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-          <button type="button" class="btn btn-primary" id="deleteAllModalButton">Ya, Hapus Semua</button>
-        </div>
-      </form>
+      <div class="modal-body">
+        Apakah anda yakin untuk <b>menghapus semua</b> achievement ?
+      </div>
+      <div class="modal-footer bg-whitesmoke br">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+        <button type="button" class="btn btn-primary" id="deleteAllModalButton">Ya, Hapus Semua</button>
+      </div>
     </div>
   </div>
 </div>
 @endsection
 @section('js')
-<script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
   integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   $('.dropify').dropify();
-
-$(document).ready(function() {
-  $('#bannerTable').DataTable( {
-        responsive: true,
-        "searching": false
-  });
-});
 </script>
-
+<script>
+  $(document).ready(function() {
+    $(document).on('click', '.page-link', function(event) {
+        event.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        achievement_pagination(page);
+    });
+  
+    function achievement_pagination(page)
+    {
+      var _token = $("input[name=_token]").val();
+      $.ajax({
+        url: "{{ route('achievementPagination') }}",
+        method: "POST",
+        data: {_token:_token, page:page},
+        success: function(data) {
+            $("#achievementData").html(data);
+        }
+      });
+    }
+  
+    $("#mobileAchievementSearch, #achievementSearch").keyup(function() {
+      var _token = $("input[name=_token]").val();
+      var originSearch = $("#achievementSearch").val();
+      var mobileOriginSearch = $("#mobileAchievementSearch").val();
+      if(originSearch == "") {
+        var search = $("#mobileAchievementSearch").val();
+      } else {
+        var search = $("#achievementSearch").val();
+      }
+        $.ajax({
+            url:"{{ route('achievementSearch') }}",
+            method:"POST",
+            data:{_token:_token, search:search},
+            success:function(data) {
+                if(search == "") {
+                    $('#searchResult').html("");
+                    $("#achievementData").css('display','block');
+                } else {
+                    $('#searchResult').html(data);
+                    $("#achievementData").css('display','none');
+                }
+            }
+        });
+     });
+  });
+</script>
 <script>
   $(document).ready(function() {
 
@@ -272,25 +323,36 @@ $(document).ready(function() {
       }
   });
   
-  $("#tambahBannerForm").validate({
+  $("#tambahAchievementForm").validate({
       rules: {
-          banner_image:{
+        achievement_name:{
+              required: true,
+              remote: {
+                        url: "{{ route('checkAchievementName') }}",
+                        type: "post",
+              }
+          },
+          achievement_description:{
               required: true,
           },
-          banner_url:{
+          achievement_image:{
               required: true,
           },
       },
       messages: {
-          banner_image:{
-                required: "Gambar harus di isi",
+          achievement_name: {
+                required: "Nama Achievement harus di isi",
+                remote: "Nama Achievement sudah tersedia"
           },
-          banner_url: {
-                  required: "Url harus di isi",
+          achievement_description: {
+                  required: "Deskripsi harus di isi",
           },
+          achievement_image: {
+                  required: "Gambar harus di isi",
+          }
       },
       errorPlacement: function(error, element) {
-        if(element.attr("name") == "banner_image") {
+        if(element.attr("name") == "achievement_image") {
           error.appendTo("#errorImage");
           // $(".dropify-wrapper").css('border-color', '#f1556c');
         } else {
@@ -303,41 +365,81 @@ $(document).ready(function() {
       }
   });
 });
-function validateEditBanner(data) {
-  $("#editBannerForm" + data.id).validate({
+
+function validateAchievement(data) {
+  $("#editAchievementForm" + data.id).validate({
       rules: {
-          edit_banner_url:{
+        edit_achievement_name:{
+              required: true,
+              remote: {
+                        param: {
+                              url: "{{ route('checkAchievementName') }}",
+                              type: "post",
+                        },
+                        depends: function(element) {
+                          // compare name in form to hidden field
+                          return ($(element).val() !== $('#checkAchievementName' + data.id).val());
+                        },
+                      }
+          },
+          edit_achievement_description:{
+              required: true,
+          },
+          edit_achievement_image:{
               required: true,
           },
       },
       messages: {
-          edit_banner_url: {
+          edit_achievement_name: {
+                required: "Nama Achievement harus di isi",
+                remote: "Nama Achievement sudah tersedia"
+          },
+          edit_achievement_description: {
+                  required: "Deskripsi harus di isi",
+          },
+          edit_achievement_image: {
                   required: "Gambar harus di isi",
           },
       },
       submitHandler: function(form) {
-        $("#editButton").prop('disabled', true);
-            form.submit();
+        $("#editAchievementButton").prop('disabled', true);
+          form.submit();
       }
   });
 }
-
-const deleteBanner = $("#deleteBannerForm").attr('action');
-
-function deleteThisBanner(data) {
-  $("#deleteBannerForm").attr('action', `${deleteBanner}/${data.id}`);
-}
-
-$("#deleteModalButton").click(function() {
-    $(this).attr('disabled', true); 
-    $("#deleteBannerForm").submit();
-});
-
 $("#deleteAllModalButton").click(function() {
     $(this).attr('disabled', true); 
     $("#destroyAllForm").submit();
 });
 
+const deleteAchievement = $("#deleteAchievementForm").attr('action');
 
+  function deleteThisAchievement(data) {
+    $("#deleteAchievementForm").attr('action', `${deleteAchievement}/${data.id}`);
+  }
+
+  $("#setting").click(function() {
+      $("#checkAllEmpty").toggle();  
+      $("#deleteAllEmpty").toggle();
+  });
+
+  function setting() {
+    $("input:checkbox").toggle();
+    $("#deleteAllButton").toggle(); 
+  }
+
+
+  $("#deleteAllButton").attr('disabled', true); 
+
+  $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+        if($(this).is(":checked")){
+            $("#deleteAllButton").attr('disabled', false); 
+            $(".checkbox").attr('disabled', false); 
+        } else if($(this).is(":not(:checked)")) {
+            $("#deleteAllButton").attr('disabled', true); 
+            $(".checkbox").attr('disabled', true); 
+        }
+    });
 </script>
 @endsection

@@ -68,7 +68,7 @@
               <div class="d-flex justify-content-between">
                 <input type="search" class="form-control desktop-search" id="productSearch" placeholder="Cari Produk..."
                   autocomplete="off" style="margin-right: 20px;">
-                <input type="checkbox" id="checkAll" autocomplete="off" style="margin-right: 20px; display:none;">
+                <input type="checkbox" class="btn btn-sm btn-secondary" id="checkAll" autocomplete="off" style="margin-right: 20px; display:none;">
                 <button class="btn btn-sm btn-danger" id="deleteAllButton" data-toggle="modal"
                   data-target="#deleteAllConfirm" style="margin-right: 20px; display:none;"><i
                     class="fas fa-trash"></i></button>
