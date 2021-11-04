@@ -13,8 +13,10 @@ use App\Http\Controllers\Back\TeamController;
 // use App\Http\Controllers\Back\SubDivisionController;
 use App\Http\Controllers\Back\EventController;
 use App\Http\Controllers\Back\BannerController;
+use App\Http\Controllers\Back\ContactController;
 use App\Http\Controllers\Back\RoleController;
 use App\Http\Controllers\Back\PermissionController;
+use App\Http\Controllers\FrontController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +28,17 @@ use App\Http\Controllers\Back\PermissionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontController::class,'home'])->name('home');
+Route::get('profile', [FrontController::class,'profile'])->name('profile');
+Route::get('member', [FrontController::class,'member'])->name('member');
+Route::get('project', [FrontController::class,'project'])->name('project');
+Route::get('event', [FrontController::class,'event'])->name('event');
+Route::get('achievement', [FrontController::class,'achievement'])->name('achievement');
+Route::get('contact', [FrontController::class,'contact'])->name('contact');
+Route::get('reload-captcha', [FrontController::class, 'reloadCaptcha']);
+
+Route::post('contact-store', [FrontController::class,'storeContact'])->name('contact.store');
+
 Route::group(['middleware' => ['guest']], function () {
 
 Route::resource('login', LoginController::class);
@@ -84,13 +94,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('banners', BannerController::class);
     Route::post('banners/destroy-all', [BannerController::class, 'destroyAll'])->name('banners.destroyAll');
 
-    Route::resource('roles', RoleController::class);
-    Route::post('roles/destroy-all', [RoleController::class, 'destroyAll'])->name('roles.destroyAll');
-    Route::post('roles/check-roles-name', [RoleController::class, 'checkRoleName'])->name('checkRoleName');
+    Route::get('/contacts',[ContactController::class, 'index'])->name('contacts.index');
+    Route::delete('/contacts/{id}',[ContactController::class, 'destroy'])->name('contacts.destroy');
 
-    Route::resource('permissions', PermissionController::class);
-    Route::post('permissions/destroy-all', [PermissionController::class, 'destroyAll'])->name('permissions.destroyAll');
-    Route::post('permissions/check-permission-name', [PermissionController::class, 'checkPermissionName'])->name('checkPermissionName');
+    // Route::resource('roles', RoleController::class);
+    // Route::post('roles/destroy-all', [RoleController::class, 'destroyAll'])->name('roles.destroyAll');
+    // Route::post('roles/check-roles-name', [RoleController::class, 'checkRoleName'])->name('checkRoleName');
+
+    // Route::resource('permissions', PermissionController::class);
+    // Route::post('permissions/destroy-all', [PermissionController::class, 'destroyAll'])->name('permissions.destroyAll');
+    // Route::post('permissions/check-permission-name', [PermissionController::class, 'checkPermissionName'])->name('checkPermissionName');
 
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
