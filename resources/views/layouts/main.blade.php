@@ -81,12 +81,12 @@
                   Profile Web
                 </a>
               </div>
-              <div class="search-item">
+              {{-- <div class="search-item">
                 <a href="{{ route('products.index') }}" style="color: #78828a;">
                   <i class="fas fa-box mr-1" style="width: 30px"></i>
                   Product
                 </a>
-              </div>
+              </div> --}}
               <div class="search-item">
                 <a href="{{ route('projects.index') }}" style="color: #78828a;">
                   <i class="fas fa-tools mr-1" style="width: 30px"></i>
@@ -144,7 +144,7 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="{{ route('dashboard.index')}}">JAYA DWARA</a>
+            <a href="{{ route('dashboard.index')}}">JAYADWARA</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard.index')}}">JD</a>
@@ -153,7 +153,7 @@
               <li class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('dashboard.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('dashboard.index') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
               <li class="{{ request()->routeIs('achievements.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('achievements.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('achievements.index') }}"><i class="fas fa-trophy"></i> <span>Achievement</span></a></li>
               <li class="{{ request()->routeIs('profile-web.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('profile-web.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('profile-web.index') }}"><i class="fas fa-id-card"></i> <span>Profile Web</span></a></li>
-              <li class="{{ request()->routeIs('products.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('products.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('products.index') }}"><i class="fas fa-box"></i> <span>Product</span></a></li>
+              {{-- <li class="{{ request()->routeIs('products.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('products.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('products.index') }}"><i class="fas fa-box"></i> <span>Product</span></a></li> --}}
               <li class="{{ request()->routeIs('projects.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('projects.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('projects.index') }}"><i class="fas fa-tools"></i> <span>Project</span></a></li>
               {{-- <li class="{{ request()->routeIs('divisions.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('divisions.index') }}"><i class="fas fa-th-large"></i> <span>Division</span></a></li> --}}
               <li class="{{ request()->routeIs('teams.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('teams.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('teams.index') }}"><i class="fas fa-users"></i> <span>Team</span></a></li>
@@ -178,7 +178,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2021 <div class="bullet"></div> <a href="{{ route('dashboard.index') }}" @if(isset($primary_color)) style="color: {{$primary_color}}" @else style="color: #6777ef;" @endif>JAYA DWARA</a>
+          Copyright &copy; 2021 <div class="bullet"></div> <a href="{{ route('dashboard.index') }}" @if(isset($primary_color)) style="color: {{$primary_color}}" @else style="color: #6777ef;" @endif>JAYADWARA</a>
         </div>
       </footer>
     </div>
