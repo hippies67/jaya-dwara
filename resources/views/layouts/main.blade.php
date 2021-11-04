@@ -4,17 +4,12 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Jaya Dwara | @yield('title')</title>
+  <title>@yield('title')JAYADWARA PERCUSSION</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-  <!-- CSS Libraries -->
-  {{-- <link rel="stylesheet" href="../node_modules/jqvmap/dist/jqvmap.min.css">
-  <link rel="stylesheet" href="../node_modules/summernote/dist/summernote-bs4.css">
-  <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css"> --}}
+  <link rel="icon" href="{{asset('front/logo/logo_gram/putih.png')}}">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -116,6 +111,12 @@
                   Banner
                 </a>
               </div>
+              <div class="search-item">
+                <a href="{{ route('banners.index') }}" style="color: #78828a;">
+                  <i class="fas fa-phone mr-1" style="width: 30px"></i>
+                  Contact
+                </a>
+              </div>
             </div>
           </div>
         </form>
@@ -158,6 +159,7 @@
               <li class="{{ request()->routeIs('teams.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('teams.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('teams.index') }}"><i class="fas fa-users"></i> <span>Team</span></a></li>
               <li class="{{ request()->routeIs('events.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('events.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('events.index') }}"><i class="fas fa-calendar-week"></i> <span>Event</span></a></li>
               <li class="{{ request()->routeIs('banners.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('banners.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('banners.index') }}"><i class="fas fa-image"></i> <span>Banner</span></a></li>
+              <li class="{{ request()->routeIs('contacts.index') ? 'active' : '' }}"><a class="nav-link" @if(request()->routeIs('contacts.index') && isset($primary_color)) style="color: {{$primary_color}};" @endif  href="{{ route('contacts.index') }}"><i class="fas fa-inbox"></i> <span>Contact</span></a></li>
               {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users-cog"></i><span>Hak Akses</span></a>
                 <ul class="dropdown-menu">

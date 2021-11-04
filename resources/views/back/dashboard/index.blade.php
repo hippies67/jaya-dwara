@@ -1,5 +1,5 @@
 @extends('layouts.main', ['web' => $web])
-@section('title', 'Tahungoding')
+@section('title', 'Dashboard - ')
 @section('container')
 <section class="section">
   <div class="section-header">
