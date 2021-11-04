@@ -53,7 +53,7 @@
         <div class="jd-banners banner-image-2 w-100 vh-100 d-flex justify-content-center align-items-center">
             <div class="container-sm text-white">
                 <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold">PROFILE</h3>
+                    <h3 style="font-weight: bold;text-decoration:underline">PROFILE</h3>
                 </div>
                 {!! Str::limit($profile->description, 500) !!}
                 <div class="mt-5">
@@ -67,7 +67,7 @@
         <div class="jd-banners banner-image-3 w-100 vh-100 d-flex justify-content-center align-items-center blurred-modal">
             <div class="container-sm text-white mb-5">
                 <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold">WE ARE NOT JUST A COMMUNITY,<br> BUT WE ARE FAMILY</h3>
+                    <h3 style="font-weight: bold;text-decoration:underline">WE ARE NOT JUST A COMMUNITY,<br> BUT WE ARE FAMILY</h3>
                     <p>
                         Actually who whe are ?
                     </p>
@@ -201,11 +201,10 @@
         <div class="jd-banners banner-image-5 w-100 vh-100 d-flex justify-content-center align-items-center">
             <div class="container-sm text-white mt-5">
                 <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold" class="float-start">EVENT</h3>
+                    <h3 style="font-weight: bold;text-decoration:underline" class="float-start">EVENT</h3>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem alias dolor tempora architecto adipisci
-                    nihil.
+                    JAYADWARA has participated in many art events from national to international level. Here are some of the events we have participated in.
                 </p>
                 <div class="container mt-5">
                     <div class="swiper mySwiper2">
@@ -233,7 +232,7 @@
                     </div>
                 </div>
                 <div class="mt-1">
-                    <a href="#" class="btn btn-sm text-white float-end"
+                    <a href="{{url('event')}}" class="btn btn-sm text-white float-end"
                         style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;">View More..</a>
                 </div>
             </div>
@@ -265,13 +264,10 @@
         <div class="jd-banners banner-image-6 w-100 vh-100 d-flex justify-content-center align-items-center blurred-modal">
             <div class="container-sm text-white mt-5">
                 <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold" class="float-start">Achievement</h3>
+                    <h3 style="font-weight: bold;text-decoration:underline" class="float-start">ACHIEVEMENT</h3>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem alias dolor tempora architecto adipisci
-                    nihil aspernatur quam aliquid ut natus commodi, recusandae cumque, sint laboriosam voluptate? Ut quae ea
-                    libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde magnam eligendi, totam fuga sunt
-                    ea sapiente hic dolor sed quidem nisi incidunt quis expedita quasi vero pariatur provident vel amet?
+                    JAYADWARA as a traditional music group, has so far received many awards. The following are some of the awards we have received.
                 </p>
                 <div class="container mt-5">
                     <div class="swiper mySwiper3">
@@ -305,7 +301,7 @@
                 <div class="text-center swiper-pagination3"></div>
                 @if (count($achievement) > 3)
                     <div class="mt-2">
-                        <a href="#" class="btn btn-sm text-white float-end"
+                        <a href="{{url('achievement')}}" class="btn btn-sm text-white float-end"
                             style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;">View More..</a>
                     </div>
                 @endif
