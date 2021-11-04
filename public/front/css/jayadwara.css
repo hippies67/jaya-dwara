@@ -12,10 +12,11 @@ html {
 }
 .happ{
   font-size: 60px;
+  font-family: 'Gelio Fasolada', sans-serif;
 }
 @media only screen and (max-width: 770px) {
   .happ{
-    font-size: 50px;
+    font-size: 3rem;
     text-align: center;
   }
   .happ-img{
@@ -457,6 +458,10 @@ filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
 .swiper-pagination-bullet-active{
   background: white !important;
 }
+.jd-section-title{
+  font-weight: bold;font-family: 'Gelio Fasolada', sans-serif;
+  font-size: 40px;
+}
 
 @media screen and (min-width: 1200px) {
   .bricklayer-column-sizer {
@@ -469,5 +474,26 @@ filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
   .bricklayer-column-sizer {
     /* divide by 2. */
     width: 50%;
+  }
+}
+
+.logo-landing{
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .logo-landing {
+    width: 200px;
+    margin-bottom: 10px;
+    height: 200px;
+  }
+  .jd-member-img{
+    object-fit: cover;
+    border-radius: 15px;
+    object-position: 90% 10%;
+    height: 300px;
+  }
+  .jd-section-title{
+    font-size: 30px;
   }
 }

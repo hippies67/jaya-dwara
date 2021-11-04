@@ -40,9 +40,9 @@
 <div class="section" id="content">
     <div class="container blurred-modal">
         <div class="row">
-            <div class="text-left text-white m-3">
+            {{-- <div class="text-left text-white m-3">
                 Menampilkan {{count($event)}} Event
-            </div>
+            </div> --}}
             @foreach ($event as $item)
             <div class="col-md-6 mb-4">
                 <a onclick="showModalEvent('{{Storage::url($item->image)}}','{{$item->name}}','{{$item->location}}','{{date('Y', strtotime($item->date))}}')" style="cursor: pointer">

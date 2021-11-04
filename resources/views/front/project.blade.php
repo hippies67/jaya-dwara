@@ -40,9 +40,9 @@
 <div class="section" id="content">
     <div class="container blurred-modal">
         <div class="row">
-            <div class="text-left text-white m-3">
+            {{-- <div class="container text-left text-white mr-3 mb-3">
                 Menampilkan {{count($project)}} Project
-            </div>
+            </div> --}}
             @foreach ($project as $item)
                 <div class="col-md-6 mb-4">
                     <div class="jd-content-4">
