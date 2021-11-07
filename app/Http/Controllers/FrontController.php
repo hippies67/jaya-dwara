@@ -92,7 +92,7 @@ class FrontController extends Controller
         $request->validate([
             'subject' => 'required',
             'description' => 'required',
-            'nama' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'captcha' => 'required',
         ]);
@@ -100,7 +100,7 @@ class FrontController extends Controller
         $insert = new Contact();
         $insert->subject = $request->subject;
         $insert->description = $request->description;
-        $insert->nama = $request->nama;
+        $insert->name = $request->name;
         $insert->email = $request->email;
 
         if ($insert->save()) {
