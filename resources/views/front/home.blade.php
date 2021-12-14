@@ -21,11 +21,11 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="text-center">
-                    <img src="{{ Storage::url($profile->logo) }}" alt="" width="250" height="250"
+                    <img src="{{ Storage::url($profile->logo) }}" class="logo-landing" alt="" width="250" height="250"
                         style="object-fit: contain">
                 </div>
               </div>
-              <div class="row justify-content-md-center text-center text-white mt-5">
+              <div class="row justify-content-md-center text-center text-white">
                 <div class="col-md-2">
                   <a href="#projectSection" style="all:unset;cursor:pointer">
                     <h5><b>Project</b></h5>
@@ -53,12 +53,12 @@
         <div class="jd-banners banner-image-2 w-100 vh-100 d-flex justify-content-center align-items-center">
             <div class="container-sm text-white">
                 <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold">PROFILE</h3>
+                    <h3 class="jd-section-title">PROFILE</h3>
                 </div>
                 {!! Str::limit($profile->description, 500) !!}
                 <div class="mt-5">
                     <a href="{{url('profile')}}" class="btn btn-sm text-white float-end"
-                        style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;">Read More..</a>
+                        >Read More..</a>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="jd-banners banner-image-3 w-100 vh-100 d-flex justify-content-center align-items-center blurred-modal">
             <div class="container-sm text-white mb-5">
                 <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold">WE ARE NOT JUST A COMMUNITY,<br> BUT WE ARE FAMILY</h3>
+                    <h3 class="jd-section-title">WE ARE NOT JUST A COMMUNITY,<br> BUT WE ARE FAMILY</h3>
                     <p>
                         Actually who whe are ?
                     </p>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="mt-5">
                     <a href="{{url('member')}}" class="btn btn-sm text-white float-end ml-5"
-                        style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;">View More..</a>
+                        >View More..</a>
                 </div>
             </div>
         </div>
@@ -131,8 +131,8 @@
     <div class="section blurred-modal" id="projectSection">
       <div class="jd-banners banner-image-4 w-100 vh-100 d-flex justify-content-center align-items-center blurred-modal">
           <div class="container-sm text-white mt-5">
-              <div class="mb-5 text-center">
-                  <h3 style="font-weight: bold;text-decoration:underline">PROJECT</h3>
+              <div class=" float-start m-3">
+                  <h3 class="jd-section-title">PROJECT</h3>
               </div>
               <div class="container mt-5">
                   <div class="swiper mySwiper4">
@@ -145,7 +145,7 @@
                                         <div class="col-md-6">
                                         <h4><b>{{$item->name}}</b></h4>
                                     <br>
-                                    <p>{{$item->description}}</p>
+                                    <p>{{Str::limit($item->description,100)}}</p>
                                     <br>
                                     <div class="col-md-4">
                                         <div class="d-grid gap-1 mb-3">
@@ -177,7 +177,7 @@
               </div>
               <div class="mt-1">
                   <a href="#" class="btn btn-sm text-white float-end"
-                      style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;">View More..</a>
+                      >View More..</a>
               </div>
           </div>
       </div>
@@ -198,16 +198,15 @@
       </div>
   </div>
     <div class="section blurred-modal" id="eventSection">
-        <div class="jd-banners banner-image-5 w-100 vh-100 d-flex justify-content-center align-items-center">
+        <div class="jd-banners banner-image-5 w-100 vh-100 d-flex">
             <div class="container-sm text-white mt-5">
-                <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold" class="float-start">EVENT</h3>
+                <div class="mb-3 float-start">
+                    <h3 class="jd-section-title mb-3">EVENT</h3>
+                    <p>
+                        JAYADWARA has participated in many art events from national to international level. Here are some of the events we have participated in.
+                    </p>
                 </div>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem alias dolor tempora architecto adipisci
-                    nihil.
-                </p>
-                <div class="container mt-5">
+                <div class="container">
                     <div class="swiper mySwiper2">
                         <div class="swiper-wrapper">
                             @foreach ($event as $item)
@@ -233,8 +232,8 @@
                     </div>
                 </div>
                 <div class="mt-1">
-                    <a href="#" class="btn btn-sm text-white float-end"
-                        style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;">View More..</a>
+                    <a href="{{url('event')}}" class="btn btn-sm text-white float-end"
+                        >View More..</a>
                 </div>
             </div>
         </div>
@@ -261,19 +260,16 @@
         </div>
     </div>
     
-    <div class="section" id="achievementSection">
-        <div class="jd-banners banner-image-6 w-100 vh-100 d-flex justify-content-center align-items-center blurred-modal">
+    <div class="section blurred-modal" id="achievementSection">
+        <div class="jd-banners banner-image-6 w-100 vh-100 d-flex ">
             <div class="container-sm text-white mt-5">
-                <div class="mb-5 text-center">
-                    <h3 style="font-weight: bold" class="float-start">Achievement</h3>
+                <div class="mb-3 float-start">
+                    <h3 class="jd-section-title mb-3">ACHIEVEMENT</h3>
+                    <p>
+                        JAYADWARA as a traditional music group, has so far received many awards. The following are some of the awards we have received.
+                    </p>
                 </div>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem alias dolor tempora architecto adipisci
-                    nihil aspernatur quam aliquid ut natus commodi, recusandae cumque, sint laboriosam voluptate? Ut quae ea
-                    libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde magnam eligendi, totam fuga sunt
-                    ea sapiente hic dolor sed quidem nisi incidunt quis expedita quasi vero pariatur provident vel amet?
-                </p>
-                <div class="container mt-5">
+                <div class="container">
                     <div class="swiper mySwiper3">
                         <div class="swiper-wrapper">
                             @foreach ($achievement as $item)
@@ -290,7 +286,7 @@
                                                 <br>
                                                 <div class="d-grid gap-1">
                                                     <button class="btn text-white btn-sm"
-                                                        style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;"
+                                                    style="background:rgba(0, 0, 0, .1);outline: #fff solid 1px;"
                                                         role="button" onclick="showModalAchievement('{{ Storage::url($item->image) }}','{{$item->name}}','{{$item->description}}')"><b>View Details</b></button>
                                                 </div>
                                             </div>
@@ -305,8 +301,8 @@
                 <div class="text-center swiper-pagination3"></div>
                 @if (count($achievement) > 3)
                     <div class="mt-2">
-                        <a href="#" class="btn btn-sm text-white float-end"
-                            style="background:rgba(0, 0, 0, .1);outline: #fff solid 2px;">View More..</a>
+                        <a href="{{url('achievement')}}" class="btn btn-sm text-white float-end"
+                            >View More..</a>
                     </div>
                 @endif
             </div>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('front/bootstrap-5.0.2/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/jayadwara.css')}}">
     @yield('css')
+    <link href="http://fonts.cdnfonts.com/css/gelio-fasolada" rel="stylesheet">
     <script src="{{ mix('/js/app.js') }}"></script>
 </head>
 <body>
@@ -70,7 +71,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
                             <div class="mb-5 mt-3">
                                 <h4><b>Contact Us</b></h4>
                                 <div class="mt-4">
@@ -81,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="mt-3 mb-5">
                                 <h4><b>Follow Us</b></h4>
                                 <div class="mt-4">

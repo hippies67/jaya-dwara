@@ -51,5 +51,8 @@
 <br>
 @endsection
 @section('js')
+<script>
+    $("img").addClass("img-fluid").css("object-fit","contain");
+</script>
 <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
 @endsection

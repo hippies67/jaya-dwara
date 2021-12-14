@@ -40,9 +40,9 @@
 <div class="section" id="content">
     <div class="container blurred-modal">
         <div class="row">
-            <div class="text-left text-white m-3">
+            {{-- <div class="text-left text-white m-3">
                 Menampilkan {{count($achievement)}} Achievement
-            </div>
+            </div> --}}
             @foreach ($achievement as $item)
               <div class="col-md-6 mb-4">
                   <div class="jd-content-achivement">
@@ -56,7 +56,7 @@
                           <div class="d-grid gap-1">
                               <button class="btn text-white btn-sm"
                                   style="background:rgba(0, 0, 0, .1);outline: #fff solid 1px;"
-                                  role="button" onclick="showModalAchievement('{{ Storage::url($item->image) }}','{{$item->name}}','{{$item->description}}')"><b>READ MORE</b></button>
+                                  role="button" onclick="showModalAchievement('{{ Storage::url($item->image) }}','{{$item->name}}','{{$item->description}}')"><b>View Detail</b></button>
                           </div>
                       </div>
                   </div>

@@ -69,8 +69,8 @@
                     </div>
                     <div class="form-group mb-3">
                         <h5>Isi <sup class="text-danger" title="Wajib Diisi" style="cursor:help">*</sup></h5>
-                        <textarea name="isi" class="form-control" style="background: rgba(0,0,0,.1);color:white" id="" cols="30" rows="10">...</textarea>
-                        @error('isi')
+                        <textarea name="description" class="form-control" style="background: rgba(0,0,0,.1);color:white" id="" cols="30" rows="10">...</textarea>
+                        @error('description')
                             <div class="text-danger">{{$message}}</div>
                         @enderror
                     </div>
@@ -78,8 +78,8 @@
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <h5>Nama <sup class="text-danger" title="Wajib Diisi" style="cursor:help">*</sup> </h5>
-                                <input type="text" class="form-control" name="nama" style="background: rgba(0,0,0,.1);color:white" placeholder="...">
-                                @error('nama')
+                                <input type="text" class="form-control" name="name" style="background: rgba(0,0,0,.1);color:white" placeholder="...">
+                                @error('name')
                                     <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
